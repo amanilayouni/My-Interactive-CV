@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>CV Amani Layouni</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+  <link href="assets/img/3135800.png" rel="icon">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="assets/css/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0" />
+ 
+</head>
+<body>
+
+  <i class="bi bi-list mobile-nav-toggle d-lg-none"></i>
+  <header id="header" class="d-flex flex-column justify-content-center">
+    <nav id="navbar" class="navbar nav-menu">
+      <ul>
+        <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Accueil</span></a></li>
+        <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>Qui est Amani ?</span></a></li>
+        <li><a href="#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Resumé</span></a></li>
+        <li><a href="#portfolio" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Certifications</span></a></li>
+        <li><a href="#services" class="nav-link scrollto"><i class="bx bx-heart"></i> <span>Intérêts</span></a></li>
+        <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-phone"></i> <span>Contacte</span></a></li>
+      </ul>
+      
+    </nav>
+
+  </header>
+
+  <center>
+    <section id="hero" class="d-flex flex-column justify-content-center">
+        <div style="margin-left: -70PX;" class="container" data-aos="zoom-in" data-aos-delay="100">
+        
+            <h2>Hello World !</h2>
+            <h1>Je suis Amani Layouni</h1>
+            <p><span class="typed" data-typed-items="Étudiante, Développeuse, Freelancer"></span></p>
+            <div class="social-links">
+                <a href="https://github.com/amanilayouni" class="github"><i class="bx bxl-github"></i></a>
+                <a href="https://www.linkedin.com/in/amani-layouni-32414119a/" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                <a href="https://www.facebook.com/amouna.layouni.5" class="facebook"><i class="bx bxl-facebook"></i></a>
+                <a href="https://www.instagram.com/amani.laayouni/?hl=fr" class="instagram"><i class="bx bxl-instagram"></i></a>
+            </div>
+            <div class="custom-btn-group mt-4">
+                <a href="assets/img/CV_Amani_Layouni.pdf" download="CV_Amani_Layouni.pdf" class="btn mr-lg-2 custom-btn">
+                    <i class="uil uil-file-alt"></i> Télécharger CV en PDF
+                </a>
+            </div>
+
+            <button class="chatbot-toggler">
+              <span class="play-text">Let's play !</span>
+              <span class="material-symbols-outlined">sports_esports</span>
+              <span class="material-symbols-outlined">Close</span>
+          </button>
+          
+          
+          
+          
+          
+            <div  class="chatbot">
+                <header>
+                    <h2 style="font-size: 27PX ; color:white">Jeu de Devinette de Nombre</h2>
+                    <span class="close-btn material-symbols-outlined">Close</span>
+                </header>
+                <ul  class="chatbox">
+                    <li class="chat incoming">
+                        <span class="material-symbols-outlined">smart_toy</span>
+                        <p >Welcome to the Number Guessing Game! Guess a number between 1 and 10.</p>
+                    </li>
+                </ul>
+                <div class="chat-input">
+                    <textarea placeholder="Entrez votre estimation.." spellcheck="false" required></textarea>
+                    <span id="send-btn" class="material-symbols-rounded">send</span>
+                </div>
+            </div>
+        </div>
+    </section>
+</center>
+
+<script>
+  const chatbotToggler = document.querySelector(".chatbot-toggler");
+  const closeBtn = document.querySelector(".close-btn");
+  const chatbox = document.querySelector(".chatbox");
+  const chatInput = document.querySelector(".chat-input textarea");
+  const sendChatBtn = document.querySelector(".chat-input span");
+
+  let userMessage = null; 
+  let numberToGuess = Math.floor(Math.random() * 10) + 1; 
+  let guesses = 0;
+
+  const inputInitHeight = chatInput.scrollHeight;
+
+  const createChatLi = (message, className) => {
+      const chatLi = document.createElement("li");
+      chatLi.classList.add("chat", `${className}`);
+      let chatContent = className === "outgoing" ? `<p style="font-size: 14px;"></p>` : `<span class="material-symbols-outlined">smart_toy</span><p style="font-size: 14px;"></p>`;
+      chatLi.innerHTML = chatContent;
+      chatLi.querySelector("p").textContent = message;
+      return chatLi; 
+  }
+
+  const generateResponse = (chatElement) => {
+      const messageElement = chatElement.querySelector("p");
+
+      if (guesses < 3) {
+          switch (guesses) {
+              case 0:
+                  messageElement.textContent = `Vous avez deviné ${userMessage}. je suis étudiante à l'UFR STGI.`;
+                  break;
+              case 1:
+                  messageElement.textContent = `Vous avez deviné ${userMessage}. j'ai 21 ans.`;
+                  break;
+              case 8:
+                  messageElement.textContent = `Vous avez deviné ${userMessage}. je suis diplômée en sciences informatiques.`;
+                  break;
+              case 2:
+                  messageElement.textContent = `Vous avez deviné ${userMessage}. je suis développeuse.`;
+                  break;
+          }
+          guesses++;
+      } else {
+          messageElement.textContent = "Game over ! Merci d'avoir joué.";
+      }
+
+      chatbox.scrollTo(0, chatbox.scrollHeight);
+  }
+
+  const handleChat = () => {
+      userMessage = chatInput.value.trim(); 
+      if (!userMessage) return;
+
+      
+      chatInput.value = "";
+      chatInput.style.height = `${inputInitHeight}px`;
+
+      chatbox.appendChild(createChatLi(userMessage, "outgoing"));
+      chatbox.scrollTo(0, chatbox.scrollHeight);
+
+      setTimeout(() => {
+          const incomingChatLi = createChatLi("Thinking...", "incoming");
+          chatbox.appendChild(incomingChatLi);
+          chatbox.scrollTo(0, chatbox.scrollHeight);
+          generateResponse(incomingChatLi);
+      }, 600);
+  }
+
+  chatInput.addEventListener("input", () => {
+      chatInput.style.height = `${inputInitHeight}px`;
+      chatInput.style.height = `${chatInput.scrollHeight}px`;
+  });
+
+  chatInput.addEventListener("keydown", (e) => {
+     
+      if (e.key === "Enter" && !e.shiftKey && window.innerWidth > 800) {
+          e.preventDefault();
+          handleChat();
+      }
+  });
+
+  sendChatBtn.addEventListener("click", handleChat);
+  closeBtn.addEventListener("click", () => document.body.classList.remove("show-chatbot"));
+  chatbotToggler.addEventListener("click", () => {
+      document.body.classList.toggle("show-chatbot");
+      startNumberGame(); 
+  });
+
+  // Function to start the number guessing game
+  const startNumberGame = () => {
+      numberToGuess = Math.floor(Math.random() * 10) + 1; 
+      guesses = 0; 
+      chatbox.innerHTML = ""; 
+      chatbox.appendChild(createChatLi("Bienvenue dans le Jeu de Devinette de Nombre ! Devinez un nombre entre 1 et 10 si vous voulez en savoir plus sur moi !", "incoming"));
+
+      const incomingMessage = document.querySelector(".chatbox .incoming p");
+      incomingMessage.style.fontSize = "15PX";
+  };
+</script>
+
+
+  <main id="main">
+    <section id="about" class="about">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>À propos de moi</h2>
+          <p>Jeune étudiante en information-communication et diplomée en Sciences informatique, passionnée par l'informatique et la découverte constante des avancées technologiques, en quête perpétuelle d'apprentissage et d'innovation.</p>
+        </div>
+
+        <section id="testimonials" class="testimonials section-bg">
+          <div class="container" data-aos="fade-up">
+    
+              <div class="testimonials-slider swiper" data-aos="fade-up" data-aos-delay="100">
+              <div class="swiper-wrapper">
+    
+                <div class="swiper-slide">
+                  <div class="testimonial-item">
+                    <img src="assets/img/AM.jpg" class="testimonial-img" alt="">
+                    <h3>Étudiante </h3>
+                  </div>
+                </div>
+
+                <div class="swiper-slide">
+                  <div class="testimonial-item">
+                    <img src="assets/img/A2.jpg" class="testimonial-img" alt="">
+                    <h3>développeuse Web</h3>
+                   </div>
+                </div>
+    
+                <div class="swiper-slide">
+                  <div class="testimonial-item">
+                    <img src="assets/img/A1.jpg" class="testimonial-img" alt="">
+                    <h3>21 ans</h3>
+                  </div>
+                </div>
+    
+              </div>
+              <div class="swiper-pagination"></div>
+            </div>
+    
+          </div>
+        </section>
+      </div>
+    </section>
+
+
+    <section id="resume" class="resume">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Resumé</h2>
+        </div>
+        <div class="row">
+          <div class="col-lg-6">
+            <h3 class="resume-title">Informations</h3>
+            <div class="resume-item pb-0">
+              <h4>Amani Layouni</h4>
+              <ul>
+                <li>Montbéliard, France</li>
+                <li>+33 7 45 26 45 94</li>
+                <li>amani.layouni55@gmail.com</li>
+              </ul>
+            </div>
+
+            <h3 class="resume-title">Education</h3>
+            <div class="resume-item">
+              <h4>L3 licence info-Com spécialité produit et service
+                multimédia.</h4>
+              <h5>2023 - présent</h5>
+              <p><em>UFR STGI - université de Franche-Comté. Montbéliard, Fr</em></p>
+            </div>
+            <div class="resume-item">
+              <h4>Licence en sciences de l'informatique spécialité Informatique et Multimedia.</h4>
+              <h5>2020 - 2023</h5>
+              <p><em>Institut Supérieur d'Informatique et des Technologies de Communication. Sousse, Tunisie</em></p>
+            </div>
+            <div class="resume-item">
+              <h4>Baccalauréat (sciences de l'informatique).</h4>
+              <h5>2020</h5>
+              <p><em>Lycée othman chatti. Msaken, Sousse, Tunisie</em></p>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <h3 class="resume-title"> Experiences Professionnelles</h3>
+            <div class="resume-item">
+              <h4>stagiare (pfe)</h4>
+              <h5>4 mois</h5>
+              <p><em>Axia Solutions, Sousse, TN </em></p>
+              <ul>
+                <li>concevoir, prototyper et developper une plateforme Web de suivi commercial.</li>
+                <li>Technologies utilisées : (MERN) MongoDB, ExpressJS, React js, Node js .</li>
+              </ul>
+            </div>
+            <div class="resume-item">
+              <h4>Stagiaire</h4>
+              <h5>1 mois</h5>
+              <p><em>Axia Solutions, Sousse, TN</em></p>
+              <ul>
+                <li>Conception et Création d'une application Web .</li>
+                <li>Technologies utilisées : HTML, CSS, JAVASCRIPT,PHP, MYSQL.</li>
+
+              </ul>
+            </div>
+            <div class="resume-item">
+              <h4>Stagiaire</h4>
+              <h5>1 mois</h5>
+              <p><em>ITgate Group , Sousse, TN</em></p>
+              <ul>
+                <li>concevoir, prototyper et developper un site Web dynamique e-commerce.</li>
+                <li>Technologies utilisées : (MERN) MongoDB, ExpressJS, React js, Node js .</li>
+
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+    <section id="facts" class="facts">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Langues</h2>
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6">
+            <div class="count-box">
+              <i class="bi bi-emoji-smile"></i>
+              <h3>Arabe</h3>
+              <p>langue Maternelle</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6">
+            <div class="count-box">
+              <i class="bi bi-emoji-smile"></i>
+              <h3>Français</h3>
+              <p>b2-Intermédiare avancé</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6">
+            <div class="count-box">
+              <i class="bi bi-emoji-smile"></i>
+              <h3>Anglais</h3>
+              <p>Intermédiare avancé</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6">
+            <div class="count-box">
+              <i class="bi bi-emoji-smile"></i>
+              <h3>Italien</h3>
+              <p>Basique</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+    <section id="skills" class="skills section-bg">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Compétences</h2>
+        </div>
+
+        <div class="row skills-content">
+
+          <div class="col-lg-6">
+
+            <div class="progress">
+              <span class="skill">HTML <i class="val">100%</i></span>
+              <div class="progress-bar-wrap " >
+                <div style="background-color: #ffa76e;" class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+
+            <div class="progress">
+              <span class="skill">CSS <i class="val">80%</i></span>
+              <div class="progress-bar-wrap">
+                <div style="background-color: #e80368;" class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+
+            <div class="progress">
+              <span class="skill">JavaScript <i class="val">60%</i></span>
+              <div class="progress-bar-wrap">
+                <div style="background-color: #11dbcf;" class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+
+            <div class="progress">
+              <span class="skill">NodeJS <i class="val">60%</i></span>
+              <div class="progress-bar-wrap">
+                <div style="background-color: #ff5828;" class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+            <div class="progress">
+              <span class="skill">JAVA <i class="val">60%</i></span>
+              <div class="progress-bar-wrap">
+                <div style="background-color: #afcfff;" class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+
+            <div class="progress">
+              <span class="skill">PHP <i class="val">60%</i></span>
+              <div class="progress-bar-wrap">
+                <div style="background-color: #31a8ff;" class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+
+            <div class="progress">
+              <span class="skill">ReactJS <i class="val">60%</i></span>
+              <div class="progress-bar-wrap">
+                <div style="background-color: #f0db4f;" class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+
+            <div class="progress">
+              <span class="skill">Photoshop <i class="val">55%</i></span>
+              <div class="progress-bar-wrap">
+                <div style="background-color: #ffa76e;" class="progress-bar" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+            <div class="progress">
+              <span class="skill">MySql <i class="val">70%</i></span>
+              <div class="progress-bar-wrap">
+                <div style="background-color: #5382a1;" class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+            <div class="progress">
+              <span class="skill">MongoDB <i class="val">50%</i></span>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+  
+    <section id="portfolio" class="portfolio section-bg">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Certifications</h2>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-12 d-flex justify-content-center" data-aos="fade-up" data-aos-delay="100">
+            <ul id="portfolio-flters">
+              <li data-filter="*" class="filter-active">Tout</li>
+              <li data-filter=".filter-app">DataCamp</li>
+              <li data-filter=".filter-card">Photoshop</li>
+              <li data-filter=".filter-web">Scrum</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <div class="portfolio-wrap">
+              <img src="assets/img/Capture d'écran 2024-01-18 233720.png" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>DataCamp</h4>
+                <p style="font-weight: bold;" >Introduction to Python</p>
+                <div class="portfolio-links">
+                  <a href="assets/img/Capture d'écran 2024-01-18 233720.png" data-gallery="portfolioGallery" class="portfolio-lightbox" ><i class="bx bx-plus"></i></a>
+                  <a href="https://www.datacamp.com/statement-of-accomplishment/course/28ac0a962655f208e5441309c33178a158861307" class="portfolio-details-lightbox" data-glightbox="type: external" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
+            <div class="portfolio-wrap">
+              <img src="assets/img/photoshop-1200x630.jpg" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Photoshop</h4>
+                <p style="font-weight: bold;">Photoshop</p>
+                <div class="portfolio-links">
+                  <a href="assets/img/photoshop-1200x630.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox" ><i class="bx bx-plus"></i></a>
+                  <a href="https//ppp" class="portfolio-details-lightbox" data-glightbox="type: external" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <div class="portfolio-wrap">
+              <img src="assets/img/Capture d'écran 2024-01-18 233807.png" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>DataCamp</h4>
+                <p style="font-weight: bold;">Foundations of propability in python</p>
+                <div class="portfolio-links">
+                  <a href="assets/img/Capture d'écran 2024-01-18 233807.png" data-gallery="portfolioGallery" class="portfolio-lightbox" ><i class="bx bx-plus"></i></a>
+                  <a href="https://www.datacamp.com/statement-of-accomplishment/course/2556a9fbab148fb6737bec01e466056731785f5f" class="portfolio-details-lightbox" data-glightbox="type: external" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
+            <div class="portfolio-wrap">
+              <img src="assets/img/certificate.PNG" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>SCRUM</h4>
+                <p  style="font-weight: bold;">Scrum fundamentals certified</p>
+                <div class="portfolio-links">
+                  <a href="assets/img/certificate.PNG" data-gallery="portfolioGallery" class="portfolio-lightbox" ><i class="bx bx-plus"></i></a>
+                  <a href="https://c46e136a583f7e334124-ac22991740ab4ff17e21daf2ed577041.ssl.cf1.rackcdn.com/Certificate/ScrumFundamentalsCertified-AmaniLayouni-963059.pdf" class="portfolio-details-lightbox" data-glightbox="type: external" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <div class="portfolio-wrap">
+              <img src="assets/img/Capture d'écran 2024-01-18 233826.png" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>DataCamp</h4>
+                <p style="font-weight: bold;">SQL intermediate queries</p>
+                <div class="portfolio-links">
+                  <a href="assets/img/Capture d'écran 2024-01-18 233826.png" data-gallery="portfolioGallery" class="portfolio-lightbox" ><i class="bx bx-plus"></i></a>
+                  <a href="https://www.datacamp.com/statement-of-accomplishment/course/275db16790d94da80e48459b255356c0851dd2ff" class="portfolio-details-lightbox" data-glightbox="type: external" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+       
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <div class="portfolio-wrap">
+              <img src="assets/img/Capture d'écran 2024-01-18 233844.png" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>DataCamp</h4>
+                <p style="font-weight: bold;">Understanding data science</p>
+                <div class="portfolio-links">
+                  <a href="assets/img/Capture d'écran 2024-01-18 233844.png" data-gallery="portfolioGallery" class="portfolio-lightbox" ><i class="bx bx-plus"></i></a>
+                  <a href="https://www.datacamp.com/statement-of-accomplishment/course/aac5d76ce0e06759ce48641f2a7a931d53bdd231" class="portfolio-details-lightbox" data-glightbox="type: external" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <section id="services" class="services">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Intérêts</h2>
+        </div>
+
+        <div class="row">
+
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+            <div class="icon-box iconbox-blue">
+              <div class="icon">
+                <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke="none" stroke-width="0" fill="#f5f5f5" d="M300,521.0016835830174C376.1290562159157,517.8887921683347,466.0731472004068,529.7835943286574,510.70327084640275,468.03025145048787C554.3714126377745,407.6079735673963,508.03601936045806,328.9844924480964,491.2728898941984,256.3432110539036C474.5976632858925,184.082847569629,479.9380746630129,96.60480741107993,416.23090153303,58.64404602377083C348.86323505073057,18.502131276798302,261.93793281208167,40.57373210992963,193.5410806939664,78.93577620505333C130.42746243093433,114.334589627462,98.30271207620316,179.96522072025542,76.75703585869454,249.04625023123273C51.97151888228291,328.5150500222984,13.704378332031375,421.85034740162234,66.52175969318436,486.19268352777647C119.04800174914682,550.1803526380478,217.28368757567262,524.383925680826,300,521.0016835830174"></path>
+                </svg>
+                <i class="bx bx-globe"></i> 
+              </div>
+              <h4><a href="">Voyages</a></h4>
+              <p style="color: white;">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+            </div>
+          </div>
+        
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
+            <div class="icon-box iconbox-orange ">
+              <div class="icon">
+                <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke="none" stroke-width="0" fill="#f5f5f5" d="M300,582.0697525312426C382.5290701553225,586.8405444964366,449.9789794690241,525.3245884688669,502.5850820975895,461.55621195738473C556.606425686781,396.0723002908107,615.8543463187945,314.28637112970534,586.6730223649479,234.56875336149918C558.9533121215079,158.8439757836574,454.9685369536778,164.00468322053177,381.49747125262974,130.76875717737553C312.15926192815925,99.40240125094834,248.97055460311594,18.661163978235184,179.8680185752513,50.54337015887873C110.5421016452524,82.52863877960104,119.82277516462835,180.83849132639028,109.12597500060166,256.43424936330496C100.08760227029461,320.3096726198365,92.17705696193138,384.0621239912766,124.79988738764834,439.7174275375508C164.83382741302287,508.01625554203684,220.96474134820875,577.5009287672846,300,582.0697525312426"></path>
+                </svg>
+                <i class="bx bx-game"></i> 
+              </div>
+              <h4><a href="">Jeux Vidéo</a></h4>
+              <p style="color: white;">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
+            </div>
+          </div>
+        
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="300">
+            <div class="icon-box iconbox-pink">
+              <div class="icon">
+                <svg width="100" height="100" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke="none" stroke-width="0" fill="#f5f5f5" d="M300,541.5067337569781C382.14930387511276,545.0595476570109,479.8736841581634,548.3450877840088,526.4010558755058,480.5488172755941C571.5218469581645,414.80211281144784,517.5187510058486,332.0715597781072,496.52539010469104,255.14436215662573C477.37192572678356,184.95920475031193,473.57363656557914,105.61284051026155,413.0603344069578,65.22779650032875C343.27470386102294,18.654635553484475,251.2091493199835,5.337323636656869,175.0934190732945,40.62881213300186C97.87086631185822,76.43348514350839,51.98124368387456,156.15599469081315,36.44837278890362,239.84606092416172C21.716077023791087,319.22268207091537,43.775223500013084,401.1760424656574,96.891909868211,461.97329694683043C147.22146801428983,519.5804099606455,223.5754009179313,538.201503339737,300,541.5067337569781"></path>
+                </svg>
+                <i class="bx bx-music"></i> 
+              </div>
+              <h4><a href="">Musique</a></h4>
+              <p style="color: white;">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
+            </div>
+          </div>
+            
+        </div>
+        
+
+      </div>
+    </section>
+    <section class="contact-section section-padding" id="contact">
+      <div class="container">
+          <div class="row">
+
+              <div class="col-lg-5 col-12">
+                  <form action="#" method="post" class="custom-form contact-form" role="form">
+                      <h2 class="mb-4 pb-2">Contactez-moi</h2>
+
+                      <div class="row">
+                          <div class="col-lg-6 col-md-6 col-12">
+                              <div class="form-floating">
+                                  <input type="text" name="full-name" id="full-name" class="form-control" placeholder="Full Name" required="">
+                                  
+                                  <label for="floatingInput">Nom & prénom</label>
+                              </div>
+                          </div>
+
+                          <div class="col-lg-6 col-md-6 col-12"> 
+                              <div class="form-floating">
+                                  <input type="email" name="email" id="email" pattern="[^ @]*@[^ @]*" class="form-control" placeholder="Email address" required="">
+                                  
+                                  <label for="floatingInput"> addresse Email</label>
+                              </div>
+                          </div>
+
+                          <div class="col-lg-12 col-12">
+                              <div class="form-floating">
+                                  <textarea class="form-control" id="message" name="message" placeholder="Describe message here"></textarea>
+                                  
+                                  <label for="floatingTextarea">Message</label>
+                              </div>
+
+                              <button type="submit" class="form-control">Envoyer</button>
+                          </div>
+                      </div>
+                  </form>
+              </div>
+
+              <div class="col-lg-6 col-12">
+                  <div class="contact-info mt-5">
+                      <div class="contact-info-item">
+                          <div class="contact-info-body">
+                              <strong>Montbéliard, France</strong>
+
+                              <p class="mt-2 mb-1">
+                                  <a href="tel: 010-020-0340" class="contact-link">
+                                    +33 7 45 26 45 94
+                                  </a>
+                              </p>
+
+                              <p class="mb-0">
+                                  <a href="mailto:info@company.com" class="contact-link">
+                                      amani.layouni55@gmail.com
+                                  </a>
+                              </p>
+                          </div>
+
+                          
+                      </div>
+
+                      <img src="assets/img/WorldMap.svg" class="img-fluid" alt="">
+                  </div>
+              </div>
+
+          </div>
+      </div>
+  </section>
+  </main>
+
+  <div id="preloader"></div>
+  
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/typed.js/typed.umd.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+
+
+</html>
